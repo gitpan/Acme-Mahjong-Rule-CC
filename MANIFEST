@@ -4,4 +4,5 @@ MANIFEST
 README
 t/Acme-Mahjong-Rule-CC.t
 lib/Acme/Mahjong/Rule/CC.pm
+mj_series
 META.yml                                 Module meta-data (added by MakeMaker)

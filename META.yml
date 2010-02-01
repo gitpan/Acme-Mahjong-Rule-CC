@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Acme-Mahjong-Rule-CC
-version:            0.10
+version:            0.20
 abstract:           Exchange Tables for a Classic Chinese Version of Mahjong.
 author:
     - Caleb Veenstra <cjveenst@mtu.edu>
