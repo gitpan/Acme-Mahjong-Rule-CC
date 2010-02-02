@@ -7,3 +7,6 @@ Revision history for Perl extension Acme::Mahjong::Rule::CC.
 0.20 Sun Jan 31 23:58:06 2010
 	Now throws exceptions if given the wrong number of arguments.
 	Includes tests and an example(mj_series)
+
+0.21 Tue Feb 02 15:10:30 2010
+	Some formating fixes in the documentation

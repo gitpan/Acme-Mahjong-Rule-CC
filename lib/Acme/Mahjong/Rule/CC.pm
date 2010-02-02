@@ -35,7 +35,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 
 sub mahjong_table{
@@ -110,11 +110,11 @@ double, and winner pays no one.
 
 =head1 SYNOPSIS
 
+=over
 use Acme::Mahjong::Rule::CC qw(:tables);
 nondealer($winner_pts, $dealer_pts, $player3_pts, $player4_pts);
-  # returns (800,-140,-270,-390)
-
-=over
+# returns (800,-140,-270,-390)
+=cut
 this returns the exchanges of the given scores
 when the winner is a non-dealer.
    
@@ -133,7 +133,7 @@ Now since the methods require that the winner comes
 first(if there is one), and then the dealer you need to
 rearrage the players in a way such as the following
 example from mj_series:
-=cut
+=over
 
 my $type;
 if ($winner eq $dealer){
@@ -147,45 +147,43 @@ if ($winner eq $dealer){
    @players = sort {$b eq $dealer} @players;
    $type = 2;
 }
-=over
-You can find the rest of the source code for
-mj_series with your distrobution.  
-
+=cut
+You can find the rest of the source code for mj_series with your distrobution.  
 #!There must be exactly four arguments in dealer(), nondealer(),
 and draw() otherwise, the function will throw an exception.
 
-=Head1 Functions Provided
+=head1 Functions Provided
 
-=Head mahjong_table()
+=head2 mahjong_table()
 mahjong_table() provides an example of how to use the 
 other functions or gives you a very basic 1-hand mahjong
 score calculator. It is not included with :tables, you must
 use :all to be able to use it.
-=Head nondealer()
+=Head2 nondealer()
 
-=cut
+=over
 nondealer($winner_pts, $dealer_pts, $player3_pts, $player4_pts)
 #nondealer(200,100,50,20) returns (800,-140,-270,-390)
-=over
+=cut
 As with all game types, the dealer pays and recieves double, the winner
 pays no one, but collects from everyone(double from the dealer), 
 and the other players collect normally, while still paying/recieving 
 double from the dealer and paying, but not collecting from the winner.
 
-=Head dealer()
-=cut
+=head2 dealer()
+=over
 dealer(winner, player2, player3, player4);
 #dealer(200,100,50,20) returns (1200,-200,-500,-500);
-=over
+=cut
 The dealer() function returns the exchanges of the given 
 scores when the dealer is the winner. meaning that the 
 winnner both collects double and pays no one.
 
-=Head draw()
-=cut
+=head2 draw()
+=over
 draw(dealer, player2, player3, player4);
 #draw(200,100,0,0) returns (1000,-200,-400,-400)
-=over        
+=cut        
 returns the exchanges of the given scores when there
 is no winner in the form of an array.
 
