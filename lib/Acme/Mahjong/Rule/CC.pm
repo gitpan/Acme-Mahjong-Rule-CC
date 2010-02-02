@@ -35,7 +35,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 
 sub mahjong_table{
@@ -99,25 +99,10 @@ __END__
 
 Acme::Mahjong::Rule::CC - Exchange Tables for a Classic Chinese Version of Mahjong.
 
-=head1 DESCRIPTION
-
-This module provides functions that table the exchanges of a round of mahjong
-based off of the given scores.  This module mainly applies to the Classic 
-Chinese version of the game, where every hand is scored, not just the winners.
-Players pay each other the value of the other's hand, dealer pays and recieves
-double, and winner pays no one.
-
-
 =head1 SYNOPSIS
 
-=over
-use Acme::Mahjong::Rule::CC qw(:tables);
-nondealer($winner_pts, $dealer_pts, $player3_pts, $player4_pts);
-# returns (800,-140,-270,-390)
-=cut
 this returns the exchanges of the given scores
-when the winner is a non-dealer.
-   
+when the winner is a non-dealer. 
 The equivalent chart form of this exchange would be:
 
       |win 200  | deal 100 | pl3 50 | pl4 20 |
@@ -133,7 +118,8 @@ Now since the methods require that the winner comes
 first(if there is one), and then the dealer you need to
 rearrage the players in a way such as the following
 example from mj_series:
-=over
+
+=cut
 
 my $type;
 if ($winner eq $dealer){
@@ -147,45 +133,64 @@ if ($winner eq $dealer){
    @players = sort {$b eq $dealer} @players;
    $type = 2;
 }
-=cut
+
+=head2 Note:
+
 You can find the rest of the source code for mj_series with your distrobution.  
 #!There must be exactly four arguments in dealer(), nondealer(),
 and draw() otherwise, the function will throw an exception.
 
-=head1 Functions Provided
+=head1 DESCRIPTION
 
-=head2 mahjong_table()
+This module provides functions that table the exchanges of a round of mahjong
+based off of the given scores.  This module mainly applies to the Classic 
+Chinese version of the game, where every hand is scored, not just the winners.
+Players pay each other the value of the other's hand, dealer pays and recieves
+double, and winner pays no one.
+
+=over
+
+=item mahjong_table()
+
 mahjong_table() provides an example of how to use the 
 other functions or gives you a very basic 1-hand mahjong
 score calculator. It is not included with :tables, you must
 use :all to be able to use it.
-=Head2 nondealer()
 
-=over
-nondealer($winner_pts, $dealer_pts, $player3_pts, $player4_pts)
-#nondealer(200,100,50,20) returns (800,-140,-270,-390)
-=cut
+=item nondealer()
+
 As with all game types, the dealer pays and recieves double, the winner
 pays no one, but collects from everyone(double from the dealer), 
 and the other players collect normally, while still paying/recieving 
 double from the dealer and paying, but not collecting from the winner.
 
-=head2 dealer()
-=over
-dealer(winner, player2, player3, player4);
-#dealer(200,100,50,20) returns (1200,-200,-500,-500);
 =cut
+
+nondealer($winner_pts, $dealer_pts, $player3_pts, $player4_pts);
+#nondealer(200,100,50,20) returns (800,-140,-270,-390)
+
+=item dealer()
+
 The dealer() function returns the exchanges of the given 
 scores when the dealer is the winner. meaning that the 
 winnner both collects double and pays no one.
 
-=head2 draw()
-=over
-draw(dealer, player2, player3, player4);
-#draw(200,100,0,0) returns (1000,-200,-400,-400)
-=cut        
+=cut
+
+dealer(winner, player2, player3, player4);
+#dealer(200,100,50,20) returns (1200,-200,-500,-500)
+
+=item draw()
+
 returns the exchanges of the given scores when there
 is no winner in the form of an array.
+
+=cut        
+
+draw(dealer, player2, player3, player4);
+#draw(200,100,0,0) returns (1000,-200,-400,-400)
+
+=back
 
 =head2 EXPORT
 
